@@ -8,4 +8,4 @@ pub mod entrypoint;
 // solana-sdk version
 pub use solana_sdk;
 
-solana_sdk::declare_id!("Memo1UhkJRfHyvLMcVucJwxXeuD728EqVDDwQDxFMNo");
+solana_sdk::declare_id!("Memo111111111111111111111111111111111111111");
