@@ -15,10 +15,11 @@ use solana_sdk::{
     system_instruction,
     transaction::Transaction,
 };
-use spl_token::{
+use spl_token_1_0::{
     self,
     instruction::*,
     native_mint,
+    ui_amount_to_amount,
     state::{Account, Mint},
 };
 use std::{mem::size_of, process::exit};
@@ -91,10 +92,10 @@ fn command_create_token(config: &Config, decimals: u8) -> CommmandResult {
                 &token.pubkey(),
                 minimum_balance_for_rent_exemption,
                 size_of::<Mint>() as u64,
-                &spl_token::id(),
+                &spl_token_1_0::id(),
             ),
             initialize_mint(
-                &spl_token::id(),
+                &spl_token_1_0::id(),
                 &token.pubkey(),
                 None,
                 Some(&config.owner.pubkey()),
@@ -132,10 +133,10 @@ fn command_create_account(config: &Config, token: Pubkey) -> CommmandResult {
                 &account.pubkey(),
                 minimum_balance_for_rent_exemption,
                 size_of::<Account>() as u64,
-                &spl_token::id(),
+                &spl_token_1_0::id(),
             ),
             initialize_account(
-                &spl_token::id(),
+                &spl_token_1_0::id(),
                 &account.pubkey(),
                 &token,
                 &config.owner.pubkey(),
@@ -166,7 +167,7 @@ fn command_assign(config: &Config, account: Pubkey, new_owner: Pubkey) -> Commma
 
     let mut transaction = Transaction::new_with_payer(
         &[set_owner(
-            &spl_token::id(),
+            &spl_token_1_0::id(),
             &account,
             &new_owner,
             &config.owner.pubkey(),
@@ -224,11 +225,11 @@ fn command_transfer(
             exit(1)
         }
     };
-    let amount = spl_token::ui_amount_to_amount(ui_amount, decimals);
+    let amount = ui_amount_to_amount(ui_amount, decimals);
 
     let mut transaction = Transaction::new_with_payer(
         &[transfer(
-            &spl_token::id(),
+            &spl_token_1_0::id(),
             &sender,
             &recipient,
             &config.owner.pubkey(),
@@ -264,11 +265,11 @@ fn command_burn(config: &Config, source: Pubkey, ui_amount: f64) -> CommmandResu
             exit(1)
         }
     };
-    let amount = spl_token::ui_amount_to_amount(ui_amount, decimals);
+    let amount = ui_amount_to_amount(ui_amount, decimals);
 
     let mut transaction = Transaction::new_with_payer(
         &[burn(
-            &spl_token::id(),
+            &spl_token_1_0::id(),
             &source,
             &config.owner.pubkey(),
             &[],
@@ -311,11 +312,11 @@ fn command_mint(
             exit(1)
         }
     };
-    let amount = spl_token::ui_amount_to_amount(ui_amount, decimals);
+    let amount = ui_amount_to_amount(ui_amount, decimals);
 
     let mut transaction = Transaction::new_with_payer(
         &[mint_to(
-            &spl_token::id(),
+            &spl_token_1_0::id(),
             &token,
             &recipient,
             &config.owner.pubkey(),
@@ -343,10 +344,10 @@ fn command_wrap(config: &Config, sol: f64) -> CommmandResult {
                 &account.pubkey(),
                 lamports,
                 size_of::<Account>() as u64,
-                &spl_token::id(),
+                &spl_token_1_0::id(),
             ),
             initialize_account(
-                &spl_token::id(),
+                &spl_token_1_0::id(),
                 &account.pubkey(),
                 &native_mint::id(),
                 &config.owner.pubkey(),
@@ -380,7 +381,7 @@ fn command_unwrap(config: &Config, address: Pubkey) -> CommmandResult {
 
     let mut transaction = Transaction::new_with_payer(
         &[close_account(
-            &spl_token::id(),
+            &spl_token_1_0::id(),
             &address,
             &config.owner.pubkey(),
             &config.owner.pubkey(),
@@ -421,7 +422,7 @@ fn command_accounts(config: &Config, token: Option<Pubkey>) -> CommmandResult {
             &config.owner.pubkey(),
             match token {
                 Some(token) => TokenAccountsFilter::Mint(token),
-                None => TokenAccountsFilter::ProgramId(spl_token::id()),
+                None => TokenAccountsFilter::ProgramId(spl_token_1_0::id()),
             },
             config.commitment_config,
         )?
