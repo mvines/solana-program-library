@@ -1487,7 +1487,7 @@ checksum = "6e63cff320ae2c57904679ba7cb63280a3dc4613885beafb148ee7bf9aa9042d"
 
 [[package]]
 name = "spl-token"
-version = "1.0.6"
+version = "1.1.0-pre1"
 dependencies = [
  "cbindgen",
  "num-derive",
