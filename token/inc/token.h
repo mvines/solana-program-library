@@ -8,8 +8,8 @@
 #include <stdlib.h>
 
 #define TOKEN_MAJOR_VERSION 1
-#define TOKEN_MINOR_VERSION 0
-#define TOKEN_PATCH_VERSION 6
+#define TOKEN_MINOR_VERSION 1
+#define TOKEN_PATCH_VERSION 0
 
 /**
  * There are 10^9 lamports in one SOL

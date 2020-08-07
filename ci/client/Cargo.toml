@@ -1,8 +1,12 @@
 [package]
 name = "test-client"
-version = "0.1.0"
-authors = ["Jack May <jack@solana.com>"]
+version = "1.0.0"
+publish = false
+authors = ["Solana Maintainers <maintainers@solana.foundation>"]
+repository = "https://github.com/solana-labs/solana-program-library"
+license = "Apache-2.0"
 edition = "2018"
+
 
 # Used to ensure that SPL programs are buildable by external clients
 
@@ -10,5 +14,6 @@ edition = "2018"
 solana-sdk = "1.2.19"
 spl-memo = { path = "../../memo" }
 spl-token = { path = "../../token" }
+spl-memo_1_0 = { path = "../../deployed/memo-1.0", package = "spl-memo" }
+spl-token_1_0 = { path = "../../deployed/token-1.0", package = "spl-token" }
 spl-token-swap = { path = "../../token-swap" }
-

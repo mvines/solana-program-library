@@ -3,7 +3,7 @@
 
 [package]
 name = "spl-token-swap"
-version = "0.1.0"
+version = "1.0.0-pre1"
 description = "Solana Program Library Token Swap"
 authors = ["Solana Maintainers <maintainers@solana.foundation>"]
 repository = "https://github.com/solana-labs/solana-program-library"
@@ -22,7 +22,7 @@ num-derive = "0.3"
 num-traits = "0.2"
 remove_dir_all = "=0.5.0"
 solana-sdk = { version = "1.2.17", default-features = false, optional = true }
-spl-token = { path = "../token", default-features = false, optional = true }
+spl-token = { path = "../deployed/token-1.0", default-features = false, optional = true }
 thiserror = "1.0"
 
 [dev-dependencies]
@@ -32,5 +32,5 @@ rand = { version = "0.7.0"}
 cbindgen = "=0.14.2"
 
 [lib]
-name = "spl_token_swap"
+name = "spl_token_swap_1_0"
 crate-type = ["cdylib", "lib"]

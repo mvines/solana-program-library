@@ -31,5 +31,5 @@ rand = { version = "0.7.0"}
 cbindgen = "=0.14.2"
 
 [lib]
-name = "spl_token"
+name = "spl_token_1_1"
 crate-type = ["cdylib", "lib"]

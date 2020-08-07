@@ -1499,7 +1499,7 @@ dependencies = [
 
 [[package]]
 name = "spl-token-swap"
-version = "0.1.0"
+version = "1.0.0-pre1"
 dependencies = [
  "cbindgen",
  "num-derive",
